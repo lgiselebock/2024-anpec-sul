@@ -145,7 +145,10 @@ graf_es_feminino <- tab_alt_es_feminino |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.5
   ) +
   geom_errorbar(
     aes(
@@ -156,14 +159,38 @@ graf_es_feminino <- tab_alt_es_feminino |>
     color = "grey60",
     linetype = "dashed",
   ) +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
-  # geom_ribbon(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), alpha = 0.2) +
-  # geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
+  # geom_ribbon(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   alpha = 0.2
+  # ) +
+  # geom_errorbar(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   width = 0.1
+  # ) +
   # scale_x_continuous(breaks = seq(-12, 12, 1)) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
-scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+  scale_y_continuous(
+    limits = c(-0.15, 0.15),
+    breaks = seq(-0.15, 0.15, 0.03)
+  ) +
   labs(
     # title = "Event Study with Panel Data",
      x = "Anos antes/após o SISU",
@@ -195,7 +222,7 @@ ggsave(
   filename = "img/03-graf_es_feminino.png",
   plot = graf_es_feminino,
   width = 3.5,
-  height = 2,
+  height = 1.75,
   units = "in",
   dpi = 300
 )
@@ -256,20 +283,38 @@ graf_es_idade_0_17 <- tab_alt_es_idade_0_17 |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.8
   ) +
   geom_errorbar(
-    aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd),
+    aes(
+      ymin = coeficientes - 1.96 * sd,
+      ymax = coeficientes + 1.96 * sd
+    ),
     width = 0.1,
     color = "grey60",
     linetype = "dashed"
   ) +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
   # scale_x_continuous(breaks = seq(-12, 12, 1)) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
-scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+  scale_y_continuous(
+    limits = c(-0.15, 0.15),
+    breaks = seq(-0.15, 0.15, 0.03)
+  ) +
   labs(
     # title = "Event Study with Panel Data",
     x = "Anos antes/após o SISU",
@@ -333,22 +378,52 @@ graf_es_idade_18_24 <- tab_es_idade_18_24 |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.8
   ) +
   geom_errorbar(
-    aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd),
+    aes(
+      ymin = coeficientes - 1.96 * sd,
+      ymax = coeficientes + 1.96 * sd
+    ),
     width = 0.1,
     color = "grey60",
     linetype = "dashed"
   ) +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
-  # geom_ribbon(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), alpha = 0.2) +
-  # geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
+  # geom_ribbon(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   alpha = 0.2
+  # ) +
+  # geom_errorbar(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   width = 0.1
+  # ) +
   # scale_x_continuous(breaks = seq(-12, 12, 1)) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
-scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+scale_y_continuous(
+  limits = c(-0.15, 0.15),
+  breaks = seq(-0.15, 0.15, 0.03)
+) +
   labs(
     # title = "Event Study with Panel Data",
     x = "Anos antes/após o SISU",
@@ -411,22 +486,52 @@ graf_es_idade_25_29 <- tab_es_idade_25_29 |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.8
   ) +
   geom_errorbar(
-    aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd),
+    aes(
+      ymin = coeficientes - 1.96 * sd,
+      ymax = coeficientes + 1.96 * sd
+    ),
     width = 0.1,
     color = "grey60",
     linetype = "dashed"
   ) +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
-  # geom_ribbon(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), alpha = 0.2) +
-  # geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
+  # geom_ribbon(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   alpha = 0.2
+  # ) +
+  # geom_errorbar(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   width = 0.1
+  # ) +
   # scale_x_continuous(breaks = seq(-12, 12, 1)) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
-scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+  scale_y_continuous(
+    limits = c(-0.15, 0.15),
+    breaks = seq(-0.15, 0.15, 0.03)
+  ) +
   labs(
     # title = "Event Study with Panel Data",
     x = "Anos antes/após o SISU",
@@ -489,22 +594,52 @@ graf_es_nao_branco <- tab_es_nao_branco |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.8
   ) +
   geom_errorbar(
-    aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd),
+    aes(
+      ymin = coeficientes - 1.96 * sd,
+      ymax = coeficientes + 1.96 * sd
+    ),
     width = 0.1,
     color = "grey60",
     linetype = "dashed"
   ) +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
-  # geom_ribbon(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), alpha = 0.2) +
-  # geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
+  # geom_ribbon(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   alpha = 0.2
+  # ) +
+  # geom_errorbar(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   width = 0.1
+  # ) +
   # scale_x_continuous(breaks = seq(-12, 12, 1)) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
-scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+  scale_y_continuous(
+    limits = c(-0.15, 0.15),
+    breaks = seq(-0.15, 0.15, 0.03)
+  ) +
   labs(# title = "Event Study with Panel Data",
     x = "Anos antes/após o SISU",
     y = "Coeficientes"
@@ -563,22 +698,53 @@ graf_es_deficiente <- tab_es_deficiente |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.8
   ) +
   geom_errorbar(
-    aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd),
+    aes(
+      ymin = coeficientes - 1.96 * sd,
+      ymax = coeficientes + 1.96 * sd
+    ),
     width = 0.1,
     color = "grey60",
     linetype = "dashed"
   ) +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
-  # geom_ribbon(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), alpha = 0.2) +
-  # geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
+  # geom_ribbon(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   alpha = 0.2
+  # ) +
+  # geom_errorbar(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   width = 0.1
+  # ) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
-scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
-  labs(# title = "Event Study with Panel Data",
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+  scale_y_continuous(
+    limits = c(-0.15, 0.15),
+    breaks = seq(-0.15, 0.15, 0.03)
+  ) +
+  labs(
+    # title = "Event Study with Panel Data",
     x = "Anos antes/após o SISU",
     y = "Coeficientes") +
   theme_minimal() +
@@ -633,24 +799,53 @@ graf_es_escola_publica <- tab_es_escola_publica |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.8
   ) +
   geom_errorbar(
     aes(
-      ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd
+      ymin = coeficientes - 1.96 * sd,
+      ymax = coeficientes + 1.96 * sd
     ),
     width = 0.1,
     color = "grey60",
     linetype = "dashed"
   ) +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
-  # geom_ribbon(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), alpha = 0.2) +
-  # geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
+  # geom_ribbon(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   alpha = 0.2
+  # ) +
+  # geom_errorbar(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   width = 0.1
+  # ) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
-  scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
-  labs(# title = "Event Study with Panel Data",
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+  scale_y_continuous(
+    limits = c(-0.15, 0.15),
+    breaks = seq(-0.15, 0.15, 0.03)
+  ) +
+  labs(
+    # title = "Event Study with Panel Data",
     x = "Anos antes/após o SISU",
     y = "Coeficientes") +
   theme_minimal() +
@@ -706,17 +901,53 @@ graf_es_apoio_social <- tab_es_apoio_social |>
   ggplot(aes(x = tempo, y = coeficientes)) +
   geom_hline(yintercept = 0, color = "black") +
   geom_vline(
-    xintercept = 0, color = "red", linetype = "dashed", linewidth = 0.8
+    xintercept = 0,
+    color = "red",
+    linetype = "dashed",
+    linewidth = 0.8
   ) +
-  geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1, color = "grey60", linetype = "dashed") +
-  geom_line(color = "darkblue", linewidth = 0.75) +
-  geom_point(color = "darkblue", size = 1) +
-  # geom_ribbon(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), alpha = 0.2) +
-  # geom_errorbar(aes(ymin = coeficientes - 1.96 * sd, ymax = coeficientes + 1.96 * sd), width = 0.1) +
+  geom_errorbar(
+    aes(
+      ymin = coeficientes - 1.96 * sd,
+      ymax = coeficientes + 1.96 * sd
+    ),
+    width = 0.1,
+    color = "grey60",
+    linetype = "dashed"
+  ) +
+  geom_line(
+    color = "darkblue",
+    linewidth = 0.75
+  ) +
+  geom_point(
+    color = "darkblue",
+    size = 1
+  ) +
+  # geom_ribbon(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   alpha = 0.2
+  # ) +
+  # geom_errorbar(
+  #   aes(
+  #     ymin = coeficientes - 1.96 * sd,
+  #     ymax = coeficientes + 1.96 * sd
+  #   ),
+  #   width = 0.1
+  # ) +
   scale_x_continuous(breaks = seq(-4, 12, 1)) +
-  # scale_y_continuous(limits = c(-0.05, 0.15), breaks = seq(-0.1, 0.2, 0.05)) +
- scale_y_continuous(limits = c(-0.15, 0.15), breaks = seq(-0.15, 0.15, 0.03)) +
-  labs(# title = "Event Study with Panel Data",
+  # scale_y_continuous(
+  #   limits = c(-0.05, 0.15),
+  #   breaks = seq(-0.1, 0.2, 0.05)
+  # ) +
+ scale_y_continuous(
+   limits = c(-0.15, 0.15),
+   breaks = seq(-0.15, 0.15, 0.03)
+  ) +
+  labs(
+    # title = "Event Study with Panel Data",
     x = "Anos antes/após o SISU",
     y = "Coeficientes") +
   theme_minimal() +
