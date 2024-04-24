@@ -5,7 +5,8 @@
 .DS_Store
 .quarto
 
-
-dados/dados_tratados/rds/cursos_ies_sisu.rds
-dados/dados_tratados/rds/cursos_ies_tds_variaveis.rds
+dados/dados_brutos
+dados/dados_tratados/csv
 dados/dados_tratados/rds/sisu.rds
+dados/dados_tratados/rds/cursos_ies.rds
+
