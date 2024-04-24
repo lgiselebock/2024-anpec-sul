@@ -1,4 +1,16 @@
 
+
+# pacotes -----------------------------------------------------------------
+# instalar os pacotes abaixo caso não tenha instalado
+
+# install.packages("here")
+# install.packages("tidyverse")
+# install.packages("plm")
+
+
+# evita a notação científica ao exibir números pequenos
+# apresentando em formato decimal completo
+
 options(scipen = 999)
 
 # importação da base ------------------------------------------------------
@@ -17,7 +29,7 @@ mod_fem_anocursouf <- plm::plm(
 )
 
 summary(mod_fem_anocursouf)
-lmtest::coeftest(mod_fem_anocursouf, vcov = sandwich::vcovHC)
+
 
 mod_idade_0_17 <- plm::plm(
   perc_ing_0_17 ~ sisu2,
@@ -27,7 +39,6 @@ mod_idade_0_17 <- plm::plm(
 )
 
 summary(mod_idade_0_17)
-lmtest::coeftest(mod_idade_0_17, vcov = sandwich::vcovHC)
 
 
 mod_idade_18_24 <- plm::plm(
@@ -58,7 +69,6 @@ mod_nao_brancos_anocursouf <- plm::plm(
 )
 
 summary(mod_nao_brancos_anocursouf)
-lmtest::coeftest(mod_nao_brancos_anocursouf, vcov = sandwich::vcovHC)
 
 
 mod_deficiencia_anocursouf <- plm::plm(
@@ -79,7 +89,7 @@ mod_escolapublica_anocursouf <- plm::plm(
 )
 
 summary(mod_escolapublica_anocursouf)
-lmtest::coeftest(mod_escolapublica_anocursouf, vcov = sandwich::vcovHC)
+
 
 mod_apoiosocial_anocursouf <- plm::plm(
   perc_ing_apoio_social ~ sisu2,

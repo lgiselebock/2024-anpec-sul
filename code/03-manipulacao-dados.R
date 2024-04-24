@@ -1,118 +1,31 @@
 
+# pacotes -----------------------------------------------------------------
+# instalar os pacotes abaixo caso não tenha instalado
+
+# install.packages("here")
+# install.packages("tidyverse")
+# install.packages("janitor")
 
 # Importação das bases ----------------------------------------------------
 
-# cursos_ies_publicas_presenciais <- readr::read_rds(
-#   here::here("dados", "dados_tratados", "rds", "cursos_ies_publicas_presenciais.rds")
-# )
-
-# cursos_ies_pp <- readr::read_rds(
-#   here::here("dados", "dados_tratados", "rds", "cursos_ies_publicas_presenciais_tds_variaveis.rds")
-# )
-
 cursos_ies <- readr::read_rds(
-  here::here("dados", "dados_tratados", "rds", "cursos_ies_tds_variaveis.rds")
+  here::here("dados", "dados_tratados", "rds", "cursos_ies.rds")
 )
-
-# dplyr::glimpse(cursos_ies_pp)
-
-# sisu_cursos <- readr::read_rds(
-#   here::here("dados", "dados_tratados", "rds", "sisu_cursos.rds")
-# )
-
-# dplyr::glimpse(sisu_cursos)
 
 sisu_vagas_ofertadas <- readr::read_rds(
   here::here("dados", "dados_tratados", "rds", "sisu_vagas_ofertadas.rds")
 )
 
-# sisu_map <- readr::read_delim(
-#   "dados/dados_tratados/csv/sisu_map.csv",
-#   delim = ";", escape_double = FALSE,
-#   col_types = readr::cols(
-#     co_ies = readr::col_character(),
-#     id_municipio = readr::col_character()
-#   ),
-#   trim_ws = TRUE
-# )
-
-
-# sisu_mapa_lat_long <- readr::read_delim(
-#   "dados/dados_tratados/csv/sisu_mapa_lat_long.csv",
-#   delim = ",", escape_double = FALSE, trim_ws = TRUE
-# ) |>
-#   dplyr::mutate(
-#     # nu_ano = as.factor(nu_ano),
-#     ano_min = as.factor(ano_min),
-#     co_ies = as.character(co_ies),
-#     co_ies_curso = as.character(co_ies_curso)
-#   ) |>
-#   dplyr::filter(nu_ano != "2023")
-
-
-# cursos_ies_sisu <- readr::read_rds(
-#   here::here("dados", "dados_tratados", "rds", "cursos_ies_sisu.rds")
-# )
-
-
 lat_long <- readxl::read_excel(
-  "dados/dados_tratados/lat_long_faltantes.xlsx",
+  here::here("dados", "lat_long.xlsx"),
   col_types = c("text", "text", "text", "text", "text", "numeric", "numeric")
 )
 
-
-# PRIMEIRA TENTATIVA ------------------------------------------------------
-# unir base cursos_ies_publicas_presenciais com sisu_cursos ---------------
-# para ver cursos que possuem o sisu como forma de ingresso ---------------
-# somente a partir de 2017 ------------------------------------------------
-# (alternativa mais adequada, mas limitada) -------------------------------
-
-# dplyr::left_join(
-#   cursos_ies_publicas_presenciais,
-#   sisu_cursos,
-#   by = c(
-#     "ano" = "ano",
-#     # "sigla_uf" = "uf_ies",
-#     # "nome" = "nome_ies",
-#     # "sigla" = "sigla_ies",
-#     "id_curso" = "codigo_curso"
-#   )
-# )
-
-
-# SEGUNDA TENTATIVA -------------------------------------------------------
-# criar coluna x1 quando curso possuir ingressante enem (sisu) ------------
-# manter o mesmo resultado em x1 depois de x1=1 ---------------------------
-# (alternativa menos adequada, mas viável) --------------------------------
-
-# cursos_ies_pp_sisu <- cursos_ies_pp |>
-#   dplyr::group_by(CO_IES, CO_CURSO) |>
-#   dplyr::mutate(
-#     # cria coluna (variável) com o ano mínimo de ingresso pelo enem (sisu)
-#     x1 = ifelse(
-#       any(QT_ING_ENEM != 0),
-#       min(NU_ANO_CENSO[QT_ING_ENEM != 0]),
-#       NA_integer_
-#     ),
-#   # x1 = min(MU_CENSO_ANO[QT_ING_ENEM != 0]),
-#   # cria coluna (variável) com a informação se o curso
-#   # possui ingressos pelo sisu (=1) ou não (=0)
-#     sisu = ifelse((NU_ANO_CENSO - x1) >= 0, 1, 0)
-#   ) |>
-#   dplyr::ungroup()
-
-
-
-# TERCEIRA TENTATIVA ------------------------------------------------------
-# unir as bases cursos_ies_pp com sisu_vagas_ofertadas --------------------
+# unir a base sisu_vagas_ofertadas com lat_long --------------------
 
 sisu_ac <- sisu_vagas_ofertadas |>
     dplyr::filter(
-      # exclui as cotas e a rede municipal
-      # tp_modalidade == "Ampla Concorrência" |
-      #   tp_modalidade == "Ampla concorrência" &
-      #   ds_mod_concorrencia == "Ampla Concorrência" |
-      #   ds_mod_concorrencia == "Ampla concorrência" &
+      # exclui a rede municipal
         ds_categoria_adm != "Pública Municipal" &
         ds_categoria_adm != "Pública municipal"
     ) |>
@@ -145,14 +58,12 @@ sisu_ac <- sisu_vagas_ofertadas |>
     qt_vagas_ofertadas_total = sum(qt_vagas_ofertadas)
   ) |>
   dplyr::ungroup() |>
-    # fazer um left join com a nova base de lat long
+    # fazer um left join com a base de lat long
     dplyr::left_join(
       lat_long,
       by = c(
         "co_ies" = "co_ies",
         "no_municipio_campus" = "no_municipio_campus",
-        # "no_ies" = "no_ies",
-        # "sg_ies" = "sg_ies",
         "sg_uf_campus" = "sg_uf_campus"
       )
     ) |>
@@ -160,9 +71,10 @@ sisu_ac <- sisu_vagas_ofertadas |>
     "no_ies" = "no_ies.x",
     "sg_ies" = "sg_ies.x",
   ) |>
-  dplyr::select(-c("no_ies.y", "sg_ies.y")) |> 
-  dplyr::filter(ds_mod_concorrencia %in% c("Ampla Concorrência", "Ampla concorrência"))
-
+  dplyr::select(-c("no_ies.y", "sg_ies.y")) |>
+  dplyr::filter(
+    ds_mod_concorrencia %in% c("Ampla Concorrência", "Ampla concorrência")
+  )
 
 # depois fazer outro join com a base maior (cursos_ies)
 
@@ -179,17 +91,9 @@ base_completa <- dplyr::left_join(
   dplyr::filter(
     # apenas cursos presenciais
     tp_modalidade_ensino == "1" &
-      # apenas cursos públicos (exclui o ano de 2013)
-      # tp_rede == "1" &
       # apenas cursos de instituições públicas federais e estaduais
-      tp_categoria_administrativa %in% c("1", "2") # &
-      # exclui as cotas e a rede municipal
-      # tp_modalidade == "Ampla Concorrência" |
-      # tp_modalidade == "Ampla concorrência" &
-      # ds_mod_concorrencia == "Ampla Concorrência" |
-      # ds_mod_concorrencia == "Ampla concorrência"
+      tp_categoria_administrativa %in% c("1", "2")
   ) |>
-  # dplyr::filter(co_ies == "582" & co_curso == "13851") |> View()
   dplyr::rename(
     "no_curso" = "no_curso.x",
     "no_ies" = "no_ies.x",
@@ -205,129 +109,40 @@ base_completa <- dplyr::left_join(
   ) |>
   dplyr::select(
     -c(no_ies.y, sg_ies.y, no_curso.y)
-  ) |> 
-  dplyr::distinct(nu_ano_censo, co_ies, co_curso, .keep_all = TRUE) 
-
-# base_completa |>
-#   dplyr::filter(co_curso == "13851") |> View()
-
-# base_completa |> 
-#   dplyr::filter(sg_ies == "UFMT" & co_curso == "1") |> View()
-
-# tabela para fazer o mapa (figura 2) -------------------------------------
-
-# ies_ingresso_sisu <- base_completa |>
-#   dplyr::select(
-#     c(
-#       co_ies,
-#       no_ies,
-#       sg_ies,
-#       no_uf,
-#       sg_uf,
-#       co_uf,
-#       no_municipio,
-#       co_municipio,
-#       no_campus,
-#       no_municipio_campus,
-#       sg_uf_campus,
-#       lat,
-#       long,
-#       ano_min
-#     )
-#   ) |>
-#   dplyr::filter(
-#     ano_min >= 2010
-#   ) |>
-#   dplyr::distinct(
-#     co_ies,
-#     .keep_all = TRUE
-#   )
-
-
-# ies_campus_ingresso_sisu <- base_completa |>
-#   dplyr::select(
-#     c(
-#       co_ies,
-#       no_ies,
-#       sg_ies,
-#       no_uf,
-#       sg_uf,
-#       co_uf,
-#       no_municipio,
-#       co_municipio,
-#       no_campus,
-#       no_municipio_campus,
-#       sg_uf_campus,
-#       lat,
-#       long,
-#       ano_min
-#     )
-#   ) |>
-#   dplyr::filter(
-#     ano_min >= 2010
-#   ) |>
-#   dplyr::distinct(
-#     co_ies,
-#     co_municipio,
-#     .keep_all = TRUE
-#   )
-
+  ) |>
+  dplyr::distinct(nu_ano_censo, co_ies, co_curso, .keep_all = TRUE)
 
 # limpeza da base de dados ------------------------------------------------
 
-# dados_filtrados <- cursos_ies_pp_sisu |>
-#   # excluir NAs (cursos que nunca possuíram ingressantes pelo sisu)
-#   dplyr::filter(sisu != "NA") |>
-#   dplyr::group_by(CO_IES) |>
-#   dplyr::add_count(CO_CURSO) |>
-#   dplyr::ungroup() |>
-#   # exclui cursos que aparecem apenas uma vez
-#   dplyr::filter(n > 1) |>
-#   dplyr::group_by(CO_IES, CO_CURSO) |>
-#   dplyr::mutate(
-#     teve_vestibular = dplyr::case_when(
-#       any(sisu == 0) ~ "sim",
-#       TRUE ~ "não"
-#     )
-#   ) |>
-#   dplyr::ungroup() |>
-#   # exclui cursos que nunca tiveram vestibular
-#   dplyr::filter(teve_vestibular == "sim") |>
-#   dplyr::arrange(CO_IES, CO_CURSO, NU_ANO_CENSO, sisu)
-
-
-
 base_completa_filtrada <- base_completa |>
+  # agrupa a base por instituição
   dplyr::group_by(co_ies) |>
+  # conta quantas vezes o mesmo curso da instituição aparece na base
   dplyr::add_count(co_curso) |>
+  # desagrupa a base
   dplyr::ungroup() |>
-  # exclui cursso que aparecem apenas uma vez
+  # exclui cursos que aparecem apenas uma vez
   dplyr::filter(n > 1) |>
+  # agrupa a base por instituição e por curso
   dplyr::group_by(co_ies, co_curso) |>
+  # cria uma variável `teve_vestibular` que indica se o curso já teve vestibular
   dplyr::mutate(
     teve_vestibular = dplyr::case_when(
       any(sisu1 == 0) ~ "sim",
       TRUE ~ "não"
     )
   ) |>
+  # desagrupa a base
   dplyr::ungroup() |>
-  # dplyr::mutate(
-  #   ds_mod_concorrencia = stringr::str_replace_na(ds_mod_concorrencia, "NA"),
-  #   concorrencia = dplyr::case_when(
-  #     ds_mod_concorrencia == "Ampla Concorrência" ~ 1,
-  #     ds_mod_concorrencia == "Ampla concorrencia" ~ 1,
-  #     ds_mod_concorrencia == "Ampla concorrência" ~ 1,
-  #     ds_mod_concorrencia == "NA" ~ 1,
-  #     TRUE ~ 0
-  #   )
-  # ) |> 
   # exclui os cursos que nunca tiveram vestibular
-  dplyr::filter(
-    teve_vestibular == "sim" 
-      # & concorrencia == 1
-  ) |> 
+  dplyr::filter(teve_vestibular == "sim") |>
+  # ordena a base por instituição, curso, ano do censo (2009, 2010, ... 2022)
+  # e existência (sisu2 == 1) ou não (sisu2 == 0) do sisu
   dplyr::arrange(co_ies, co_curso, nu_ano_censo, sisu2) |>
+  # agrupa a base por ano do censo, instituição e curso
   dplyr::group_by(nu_ano_censo, co_ies, co_curso) |>
+  # cria variáveis que indicam a quantidade total de ingressantes
+  # e os percentuais de alunos ingressantes (para cada perfil)
   dplyr::mutate(
     co_cine_rotulo = stringr::str_remove_all(co_cine_rotulo, "\"\""),
     qt_total_ing_nao_branca = sum(qt_ing_preta, qt_ing_parda, qt_ing_amarela, qt_ing_indigena, na.rm = TRUE),
@@ -356,58 +171,37 @@ base_completa_filtrada <- base_completa |>
     perc_ing_50_59 = qt_ing_50_59 / qt_ing,
     perc_ing_60_mais = qt_ing_60_mais / qt_ing
   ) |>
+  # desagrupa a base
   dplyr::ungroup() |>
+  # ordena por instituição, curso, ano do censo (2009, 2010, ... 2022)
+  # e existência (sisu2 == 1) ou não (sisu2 == 0) do sisu
   dplyr::arrange(co_ies, co_curso, nu_ano_censo, sisu2)
 
-# base_completa_filtrada |>
-#   dplyr::select(
-#     c(
-#       1:8,
-#       co_ies,
-#       co_curso,
-#       sg_ies,
-#       qt_ing_0_17,
-#       qt_ing_18_24,
-#       qt_ing_25_29,
-#       qt_ing_30_34,
-#       qt_ing_35_39,
-#       qt_ing_40_49,
-#       qt_ing_50_59,
-#       qt_ing_60_mais,
-#       ds_mod_concorrencia,
-#       qt_vagas_ofertadas,
-#       qt_vagas_ofertadas_total,
-#       sisu1
-#     )
-#   ) |> dplyr::mutate(
-#     ds_mod_concorrencia = stringr::str_replace_na(ds_mod_concorrencia, "NA"),
-#     concorrencia = dplyr::case_when(
-#       ds_mod_concorrencia == "Ampla Concorrência" ~ 1,
-#       ds_mod_concorrencia == "Ampla concorrencia" ~ 1,
-#       ds_mod_concorrencia == "NA" ~ 1,
-#       TRUE ~ 0
-#     )
-#   ) |> View()
 
-
-sisu_nunca <- base_completa |> 
-  dplyr::filter(
-    tp_categoria_administrativa == "1"
-    & nu_ano_censo != 2009
-    & tp_dimensao == "1"
-  ) |>
-  dplyr::group_by(co_ies) |> 
+# cria uma base com as instituições que nunca aderiram ao sisu (sisu2 == 0)
+sisu_nunca <- base_completa |>
+  # retira da base o ano de 2009
+  # (antes da existência do sisu)
+  dplyr::filter(nu_ano_censo != 2009) |>
+  # agrupa a base por instituição
+  dplyr::group_by(co_ies) |>
+  # cria a variável `aderiu_sisu` que indica se o curso,
+  # em algum momento, aderiu ao sisu (sisu2 == 1) ou não (sisu2 == 0)
   dplyr::mutate(
     aderiu_sisu = dplyr::case_when(
       sum(sisu2 == "1") > 0 ~ "1",
       TRUE ~ "0"
     )
   ) |>
-  dplyr::ungroup() |> 
+  # desagrupa a base
+  dplyr::ungroup() |>
+  # mantem apenas os cursos que nunca aderiram ao sisu
   dplyr::filter(
     aderiu_sisu == "0"
   ) |>
+  # remove as linhas duplicadas
   dplyr::distinct(nu_ano_censo, sg_ies, co_ies, .keep_all = TRUE) |>
+  # seleciona as variáveis de interesse
   dplyr::select(
     c(
       nu_ano_censo,
@@ -419,95 +213,38 @@ sisu_nunca <- base_completa |>
       sisu2,
       aderiu_sisu
     )
-  ) 
+  )
 
+# tabela para fazer o mapa (figura 2) -------------------------------------
 
-# RASCUNHOS
-base_completa_filtrada |>
-  dplyr::filter(co_ies == "582" & co_curso == "13851") |>
-  # dplyr::select(c(1:8, co_ies, co_curso, no_curso, sg_ies, ds_mod_concorrencia, qt_ing_0_17, qt_ing_18_24, qt_ing_25_29, qt_ing_30_34, qt_ing_35_39, qt_ing_40_49, qt_ing_50_59, qt_ing_60_mais, qt_total_ing_0_34, qt_total_ing_35_60_mais)) |>
-  # dplyr::select(c(1:8, co_curso, no_curso, sg_ies, 290:297)) |>
-  # dplyr::distinct(nu_ano_censo, co_ies, co_curso, .keep_all = TRUE) |>
-  View()
-
-
-base_completa |>
-  dplyr::filter(co_ies == "582" & co_curso == "13851") |>
-  dplyr::select(c(1:8, co_ies, co_curso, no_curso, sg_ies, ds_mod_concorrencia, qt_ing_0_17, qt_ing_18_24, qt_ing_25_29, qt_ing_30_34, qt_ing_35_39, qt_ing_40_49, qt_ing_50_59, qt_ing_60_mais, qt_total_ing_0_34, qt_total_ing_35_60_mais)) |>
-  # dplyr::select(c(1:8, co_curso, no_curso, sg_ies, 290:297)) |>
-  dplyr::distinct(nu_ano_censo, co_ies, co_curso, .keep_all = TRUE) |>
-  View()
-
-
-sisu_ac |> 
-  dplyr::filter(
-    co_ies == "582" 
-      # & co_ies_curso == "13851"
-      & co_ies_curso == "13850"
-  ) |>
-  # dplyr::select(c(1:8, co_ies, co_curso, no_curso, sg_ies, ds_mod_concorrencia, qt_ing_0_17, qt_ing_18_24, qt_ing_25_29, qt_ing_30_34, qt_ing_35_39, qt_ing_40_49, qt_ing_50_59, qt_ing_60_mais, qt_total_ing_0_34, qt_total_ing_35_60_mais)) |>
-  # dplyr::select(c(1:8, co_curso, no_curso, sg_ies, 290:297)) |>
-  # dplyr::distinct(nu_ano, co_ies, co_ies_curso, .keep_all = TRUE) |>
-  View()
-
-
-base_completa_filtrada |> 
-  dplyr::distinct(ds_mod_concorrencia) 
-
-sisu_vagas_ofertadas |> 
+ies_ingresso_sisu <- base_completa |>
   dplyr::select(
     c(
-      1:8,
-      co_ies_curso,
-      no_curso,
-      ds_mod_concorrencia,
-      tp_modalidade,
-      qt_vagas_ofertadas
+      co_ies,
+      no_ies,
+      sg_ies,
+      no_uf,
+      sg_uf,
+      co_uf,
+      no_municipio,
+      co_municipio,
+      no_campus,
+      no_municipio_campus,
+      sg_uf_campus,
+      lat,
+      long,
+      ano_min
     )
   ) |>
-  dplyr::filter(
-    co_ies == "582"
-      & co_ies_curso == "13851"
-  ) |> 
-  View()
-
-
+  dplyr::filter(ano_min >= 2010) |>
+  dplyr::distinct(
+    co_ies,
+    .keep_all = TRUE
+  )
 
 # salvando as tabelas -----------------------------------------------------
 
-# cursos_ies_pp_sisu ------------------------------------------------------
-
-readr::write_rds(
-  cursos_ies_pp_sisu,
-  here::here("dados", "dados_tratados", "rds", "cursos_ies_pp_sisu.rds"),
-  compress = "gz"
-)
-
-
-write.csv(
-  cursos_ies_pp_sisu,
-  here::here("dados", "dados_tratados", "csv", "cursos_ies_pp_sisu.csv"),
-  fileEncoding = "UTF-8"
-)
-
-
-# dados filtrados ---------------------------------------------------------
-
-# readr::write_rds(
-#   dados_filtrados,
-#   here::here("dados", "dados_tratados", "rds", "dados_filtrados.rds"),
-#   compress = "gz"
-# )
-
-
-# write.csv(
-#   dados_filtrados,
-#   here::here("dados", "dados_tratados", "csv", "dados_filtrados.csv"),
-#   fileEncoding = "UTF-8"
-# )
-
-
-# base completa ------------------------------------------------------------
+## base completa ----------------------------------------------------------
 
 readr::write_rds(
   base_completa,
@@ -522,8 +259,7 @@ write.csv(
   fileEncoding = "UTF-8"
 )
 
-
-# base_completa_filtrada --------------------------------------------------
+## base_completa_filtrada -------------------------------------------------
 
 readr::write_rds(
   base_completa_filtrada,
@@ -537,8 +273,7 @@ write.csv(
   fileEncoding = "UTF-8"
 )
 
-
-# ies_ingresso_sisu -------------------------------------------------------
+## ies_ingresso_sisu ------------------------------------------------------
 
 readr::write_rds(
   ies_ingresso_sisu,
@@ -552,23 +287,7 @@ write.csv(
   fileEncoding = "UTF-8"
 )
 
-
-# ies_campus_ingresso_sisu ------------------------------------------------
-
-readr::write_rds(
-  ies_campus_ingresso_sisu,
-  here::here("dados", "dados_tratados", "rds", "ies_campus_ingresso_sisu.rds"),
-  compress = "gz"
-)
-
-write.csv(
-  ies_campus_ingresso_sisu,
-  here::here("dados", "dados_tratados", "csv", "ies_campus_ingresso_sisu.csv"),
-  fileEncoding = "UTF-8"
-)
-
-
-# sisu_nunca --------------------------------------------------------------
+## sisu_nunca -------------------------------------------------------------
 
 readr::write_rds(
   sisu_nunca,
@@ -582,60 +301,96 @@ write.csv(
   fileEncoding = "UTF-8"
 )
 
-# RASCUNHOS ---------------------------------------------------------------
+# RASCUNHOS
 
-cursos_ies_pp_sisu |>
-  dplyr::select(
-    c(
-      NU_ANO_CENSO,
-      CO_IES,
-      SG_IES,
-      CO_CURSO,
-      NO_CURSO,
-      QT_ING_ENEM,
-      x1,
-      sisu
-    )
-  ) |>
-  dplyr::arrange(CO_IES, CO_CURSO, NU_ANO_CENSO, sisu) |>
-  # dplyr::filter(sisu == "NA") |>
-  # dplyr::filter(SG_IES == "UFSM") |>
-  dplyr::filter(is.na(sisu)) |>
-  dplyr::distinct(CO_IES, CO_CURSO, .keep_all = TRUE) |>
-  View("universidades_cursos_que_nao_possuem_sisu")
+# base_completa_filtrada |>
+#   dplyr::filter(co_ies == "582" & co_curso == "13851") |>
+#   dplyr::select(
+#     c(
+#       1:8,
+#       co_ies,
+#       co_curso,
+#       no_curso,
+#       sg_ies,
+#       ds_mod_concorrencia,
+#       qt_ing_0_17,
+#       qt_ing_18_24,
+#       qt_ing_25_29,
+#       qt_ing_30_34,
+#       qt_ing_35_39,
+#       qt_ing_40_49,
+#       qt_ing_50_59,
+#       qt_ing_60_mais,
+#       qt_total_ing_0_34,
+#       qt_total_ing_35_60_mais
+#     )
+#   ) |>
+#   dplyr::distinct(nu_ano_censo, co_ies, co_curso, .keep_all = TRUE) |>
+#   View()
 
+# base_completa |>
+#   dplyr::filter(co_ies == "582" & co_curso == "13851") |>
+#   dplyr::select(
+#     c(
+#       1:8,
+#       co_ies,
+#       co_curso,
+#       no_curso,
+#       sg_ies,
+#       ds_mod_concorrencia,
+#       qt_ing_0_17,
+#       qt_ing_18_24,
+#       qt_ing_25_29,
+#       qt_ing_30_34,
+#       qt_ing_35_39,
+#       qt_ing_40_49,
+#       qt_ing_50_59,
+#       qt_ing_60_mais
+#     )
+#   ) |>
+#   dplyr::distinct(nu_ano_censo, co_ies, co_curso, .keep_all = TRUE) |>
+#   View()
 
+# sisu_ac |>
+#   dplyr::filter(
+#     co_ies == "582"
+#     # & co_ies_curso == "13851"
+#     & co_ies_curso == "13850"
+#   ) |>
+#   dplyr::select(
+#     c(
+#       1:8,
+#       co_ies,
+#       co_curso,
+#       no_curso,
+#       sg_ies,
+#       ds_mod_concorrencia,
+#       qt_ing_0_17,
+#       qt_ing_18_24,
+#       qt_ing_25_29,
+#       qt_ing_30_34,
+#       qt_ing_35_39,
+#       qt_ing_40_49,
+#       qt_ing_50_59,
+#       qt_ing_60_mais,
+#       qt_total_ing_0_34,
+#       qt_total_ing_35_60_mais
+#     )
+#   ) |>
+#   dplyr::select(c(1:8, co_curso, no_curso, sg_ies, 290:297)) |>
+#   dplyr::distinct(nu_ano, co_ies, co_ies_curso, .keep_all = TRUE) |>
+#   View()
 
-
-
-lat_long <- sisu_ac |>
-  dplyr::distinct(
-    co_ies,
-    sg_uf_campus,
-    no_municipio_campus,
-    .keep_all = TRUE
-  ) |>
-  dplyr::select(
-    c(
-      co_ies,
-      no_ies,
-      sg_ies,
-      sg_uf_campus,
-      no_municipio_campus,
-      lat,
-      long
-    )
-  )
-
-
-write.csv(
-  lat_long_faltantes,
-  here::here("dados", "dados_tratados", "csv", "lat_long_faltantes.csv"),
-  fileEncoding = "UTF-8"
-)
-
-writexl::write_xlsx(
-  lat_long,
-  here::here("dados", "dados_tratados", "lat_long_faltantes.xlsx")
-)
-
+# sisu_vagas_ofertadas |>
+#   dplyr::select(
+#     c(
+#       1:8,
+#       co_ies_curso,
+#       no_curso,
+#       ds_mod_concorrencia,
+#       tp_modalidade,
+#       qt_vagas_ofertadas
+#     )
+#   ) |>
+#   dplyr::filter(co_ies == "582" & co_ies_curso == "13851") |>
+#   View()
