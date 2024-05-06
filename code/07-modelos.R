@@ -1,5 +1,4 @@
 
-
 # pacotes -----------------------------------------------------------------
 # instalar os pacotes abaixo caso não tenha instalado
 
