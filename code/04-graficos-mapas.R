@@ -60,6 +60,11 @@ tab_enem <- tab_enem |>
   ) |>
   dplyr::arrange(desc(ano))
 
+readr::write_csv(
+  tab_enem,
+  here::here("dados", "dados_tratados", "csv", "tab_enem.csv")
+)
+
 grafico_enem_inscritos <- tab_enem |>
   ggplot() +
   aes(
