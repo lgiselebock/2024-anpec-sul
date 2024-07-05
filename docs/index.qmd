@@ -167,7 +167,7 @@ tab_enem |>
 
 -   Criado em 2010, com o objetivo de [**ampliar o acesso ao ensino superior**]{.blue} e a mobilidade acadêmica ([Mello, 2022; Monteiro; Mazoto; Cunha, 2016]{.blue}).
 
--   [**Plataforma de admissão centralizada**]{.blue}, onde as instituições federais e estaduais de todo o país oferecem suas vagas, e os alunos se candatam a elas com base em suas notas do ENEM.
+-   [**Plataforma de admissão centralizada**]{.blue}, onde as instituições federais e estaduais de todo o país oferecem suas vagas, e os alunos se candidatam a elas com base em suas notas do ENEM.
 
 -   Apesar da descrença inicial, sobre a capacidade de seleção do novo sistema e da aplicabilidade de um exame de tamanha importância em âmbito nacional, tanto o ENEM quanto o SISU construíram uma sólida reputação.
 
