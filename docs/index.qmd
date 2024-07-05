@@ -86,9 +86,9 @@ library(ggplot2)
 
 ## ENEM
 
--   Criado em 1998, consistiam em um exame opcional, realizado em um dia, para avaliar a qualidade do ensino médio brasileiro.
+-   Criado em 1998, consistia em um exame opcional, realizado em um dia, para avaliar a qualidade do ensino médio brasileiro.
 
--   Em 2009, com a reformulação, tornou-se mais rigoroso. Realizado simultaneamente em todo o país, em dois dias, uma vez ao final do calendário escolar, com 180 questões de múltipla escolha e uma redação.
+-   Em 2009, com a reformulação, tornou-se mais rigoroso, com um conteúdo que engloba o currículo nacional obrigatório do ensino médio. Realizado simultaneamente em todo o país, em dois dias, uma vez ao final do calendário escolar, com 180 questões de múltipla escolha e uma redação.
 
 -   Dada a sua relevância para o ingresso nas instituições públicas, o número de inscritos no ENEM apresentou aumento expressivo ([Machado; Szerman, 2021]{.blue}):
 
@@ -340,6 +340,8 @@ knitr::include_graphics(
 
 
 ## Heterogeneidade
+
+Os impactos agregados podem mascarar uma heterogeneidade importante, e os impactos heterogêneos podem ajudar na compreensão das potenciais implicações da centralização sobre as caracterísicas dos estudantes ingressantes.
 
 ```{r}
 #| fig-align: 'center'
