@@ -107,7 +107,7 @@ library(ggplot2)
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "01-grafico-enem-inscritos.png")
+  here::here("docs", "img", "01-grafico-enem-inscritos.png")
 )
 ```
 
@@ -186,7 +186,7 @@ tab_enem |>
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "02-map_ies_ingresso_sisu.png")
+  here::here("docs", "img", "02-map_ies_ingresso_sisu.png")
 )
 ```
 
@@ -231,7 +231,7 @@ Os dados utilizados foram obtidos junto ao Ministério da Educação:
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "03-tab-descricao-variaveis-dependentes.png")
+  here::here("docs", "img", "03-tab-descricao-variaveis-dependentes.png")
 )
 ```
 
@@ -243,7 +243,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "04-tab-expansao-sisu-ies-brasileiras.png")
+  here::here("docs", "img", "04-tab-expansao-sisu-ies-brasileiras.png")
 )
 ```
 
@@ -253,7 +253,7 @@ knitr::include_graphics(
 #| fig-align: 'center'
 
 knitr::include_graphics(
-  here::here("presentation", "img", "05-tab-estatisticas-descritivas-variaveis-dependentes.png")
+  here::here("docs", "img", "05-tab-estatisticas-descritivas-variaveis-dependentes.png")
 )
 ```
 
@@ -264,7 +264,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
  
 knitr::include_graphics(
-  here::here("presentation", "img", "06-tab-estatisticas-descritivas-vd-trat-ntrat.png")
+  here::here("docs", "img", "06-tab-estatisticas-descritivas-vd-trat-ntrat.png")
 )
 ```
 
@@ -318,7 +318,7 @@ $$ {#eq-event-study}
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "07-tab-efeito-sisu.png")
+  here::here("docs", "img", "07-tab-efeito-sisu.png")
 )
 ```
 
@@ -334,7 +334,7 @@ Para ter maiores informações sobre a [dinâmica das mudanças na composição 
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "08-graf-event-study.png")
+  here::here("docs", "img", "08-graf-event-study.png")
 )
 ```
 
@@ -346,7 +346,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "09-tab-efeitos-hetero-localizacao-ies.png")
+  here::here("docs", "img", "09-tab-efeitos-hetero-localizacao-ies.png")
 )
 ```
 
@@ -357,7 +357,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "10-tab-efeitos-hetero-cat-adm-ies.png")
+  here::here("docs", "img", "10-tab-efeitos-hetero-cat-adm-ies.png")
 )
 ```
 
@@ -368,7 +368,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "11-tab-efeitos-hetero-regioes-br.png")
+  here::here("docs", "img", "11-tab-efeitos-hetero-regioes-br.png")
 )
 ```
 
@@ -380,7 +380,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "12-tab-teste-robustez-1.png")
+  here::here("docs", "img", "12-tab-teste-robustez-1.png")
 )
 ```
 
@@ -391,7 +391,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "13-tab-teste-robustez-2.png")
+  here::here("docs", "img", "13-tab-teste-robustez-2.png")
 )
 ```
 
@@ -402,7 +402,7 @@ knitr::include_graphics(
 #| fig-dpi: 1200
 
 knitr::include_graphics(
-  here::here("presentation", "img", "14-tab-teste-robustez-3.png")
+  here::here("docs", "img", "14-tab-teste-robustez-3.png")
 )
 ```
 
