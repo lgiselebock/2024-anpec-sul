@@ -16,7 +16,7 @@ format:
     incremental: false
     transition: slide
     mouse-wheel: true
-    logo: "img/anpec-logo-3.png"
+    logo: "img/logo-ppged-anpec.png"
     footer: "Slides por [Luísa Gisele Böck](https://luisa.rbind.io/), feito com [Quarto](https://quarto.org/docs/presentations/revealjs/index.html). Código disponível no [GitHub](https://github.com/lgiselebock/2024-anpec-sul)."
     theme: ["custom.scss"]
     slide-number: c/t
