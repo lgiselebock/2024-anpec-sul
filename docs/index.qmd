@@ -70,13 +70,14 @@ library(ggplot2)
 
 ## *Background* Institucional
 
--   O sistema de ensino superior brasileiro é composto por 2.595 instituições, sendo 312 públicas e 2.283 privadas ([INEP, 2023]{.blue}).
+-   Em 2022, o sistema de ensino superior brasileiro é composto por 2.595 instituições, sendo 312 públicas e 2.283 privadas. O sistema público é constituído por 120 instituições federais, 133 estaduais e 59 municipais ([INEP, 2023]{.blue}).
 
--   [**As instituições federais e estaduais são, por lei, gratuitas, oferecendo um número limitado de vagas e sendo reconhecidas por sua alta qualidade**]{.blue}.
+-   [**As instituições federais e estaduais são, por lei, gratuitas, oferecendo um número limitado de vagas e sendo reconhecidas por sua alta qualidade**]{.blue}. 
 
--   Esses atributos costumam atrair um número considerável de candidatos, tornando o acesso à graduação pública extremamente competitivo e seletivo ([Estevan; Gall; Morin, 2019; Machado; Szerman, 2021; Mello, 2023]{.blue}).
+- Esses atributos costumam atrair um número considerável de candidatos, tornando o [**acesso à graduação pública extremamente competitivo e seletivo**]{.blue} ([Estevan; Gall; Morin, 2019; Machado; Szerman, 2021; Mello, 2023]{.blue}).
 
--   [**Até 2010, o ingresso era completamente descentralizado**]{.blue}; os candidatos se inscreviam em cada instituição de interesse e precisavam realizar uma prova específica, [**o vestibular**]{.blue}.
+-   [**Até 2010, o ingresso era completamente descentralizado**]{.blue}; os candidatos se inscreviam em cada instituição de interesse e precisavam realizar uma prova específica, [**o vestibular**]{.blue}. 
+<!-- As restrições de tempo, os valores das taxas de inscrição e os custos de viagens limitariam o número de instituições que seria possível almejar, ocasionando em um mercado de ensino superior altamente localizado e restrito [(Zeidan *et al.*, 2023; Mello, 2023]{.blue}). -->
 
 -   Com o [**objetivo de democratizar o acesso às instituições públicas de ensino superior**]{.blue}, o Ministério da Educação introduziu uma [**série de reformas**]{.blue}, sendo as mais importantes:
 
@@ -86,9 +87,9 @@ library(ggplot2)
 
 ## ENEM
 
--   Criado em 1998, consistia em um exame opcional, realizado em um dia, para avaliar a qualidade do ensino médio brasileiro.
+-   Criado em 1998, consistia em um [**exame opcional**]{.blue}, realizado em um dia, para avaliar a qualidade do ensino médio brasileiro.
 
--   Em 2009, com a reformulação, tornou-se mais rigoroso, com um conteúdo que engloba o currículo nacional obrigatório do ensino médio. Realizado simultaneamente em todo o país, em dois dias, uma vez ao final do calendário escolar, com 180 questões de múltipla escolha e uma redação.
+-   Em 2009, com a reformulação, tornou-se mais rigoroso, com um [**conteúdo que engloba o currículo nacional obrigatório do ensino médio**]{.blue}. Realizado simultaneamente em todo o país, em dois dias, uma vez ao final do calendário escolar, com 180 questões de múltipla escolha e uma redação. Assemelha-se as mais concorridas avaliações de ingresso às universidades.
 
 -   Dada a sua relevância para o ingresso nas instituições públicas, o número de inscritos no ENEM apresentou aumento expressivo ([Machado; Szerman, 2021]{.blue}):
 
@@ -167,11 +168,11 @@ tab_enem |>
 
 -   Criado em 2010, com o objetivo de [**ampliar o acesso ao ensino superior**]{.blue} e a mobilidade acadêmica ([Mello, 2022; Monteiro; Mazoto; Cunha, 2016]{.blue}).
 
--   [**Plataforma de admissão centralizada**]{.blue}, onde as instituições federais e estaduais de todo o país oferecem suas vagas, e os alunos se candidatam a elas com base em suas notas do ENEM.
+-   [**Plataforma de admissão centralizada, *on-line* e gratuita**]{.blue}, onde as instituições federais e estaduais de todo o país oferecem suas vagas, e os alunos se candidatam a elas com base em suas notas do ENEM.
 
--   Apesar da descrença inicial, sobre a capacidade de seleção do novo sistema e da aplicabilidade de um exame de tamanha importância em âmbito nacional, tanto o ENEM quanto o SISU construíram uma sólida reputação.
+-  [**Apesar da descrença inicial**]{.blue}, sobre a capacidade de seleção do novo sistema e da aplicabilidade de um exame de tamanha importância em âmbito nacional, [**tanto o ENEM quanto o SISU construíram uma sólida reputação**]{.blue}.
 
--   A adesão voluntária das instituições a esse sistema aumentou progressivamente, tornando-se o principal meio de ingresso ([Machado; Szerman, 2021; Mello, 2022]{.blue}):
+-   A adesão voluntária das instituições a esse sistema aumentou progressivamente, tornando-se o [**principal meio de ingresso**]{.blue} das universidades no Brasil ([Machado; Szerman, 2021; Mello, 2022]{.blue}):
 
     -   entre 2010 e 2022, o número de instituições que utilizaram o SISU cresceu de 59 para 128;
 
@@ -192,6 +193,7 @@ knitr::include_graphics(
 
 <center><font size='2'> Fonte: [GOOGLE, Inc., 2023, MEC, 2023; Pereira; Goncalves, 2023]{.blue} </font><center>
 
+
 ## Revisão da Literatura
 
 -   [Machado e Szerman (2021)]{.blue}: declínio na proporção de estudantes do sexo feminino e aumento na idade média dos alunos admitidos, não sendo encontradas mudanças na composição racial ou socioeconômica; aumento do número de matrículas de alunos de fora dos estados de origem e aumento das notas médias de corte.
@@ -200,9 +202,9 @@ knitr::include_graphics(
 
 -   [Ristoff (2014)]{.blue}: queda no ingresso de alunos brancos nos cursos de graduação e de estudantes de classe média alta, e aumento no número de estudantes que completaram o ensino médio em escola pública.
 
--   [Mello (2022)]{.blue}: políticas que reduzem custos de incrição podem aumentar as matrículas de estudantes de baixa renda no ensino superior.
+-   [Mello (2022)]{.blue}: *"políticas que reduzem custos de incrição podem aumentar as matrículas de estudantes de baixa renda no ensino superior"*. O estudante que considerava um preço muito elevado se inscrever em várias instituições, após o SISU poderia considerar se inscrever em qualquer instituição do país.
 
--   [Knight e Schiff (2022)]{.blue}: nos Estados Unidos, o *Commom Application* aumentou o ingresso de estudantes de alta renda e que moram fora do estado da univerisade, além de elevar a fração de estudantes não brancos, aumentando a diversidade racial.
+-   [Knight e Schiff (2022)]{.blue}: nos Estados Unidos, entre 1990 e 2016, o *Commom Application* aumentou o ingresso de estudantes de alta renda e que moram fora do estado da univerisade, além de elevar a fração de estudantes não brancos, aumentando a diversidade racial.
 
 ## Dados
 
@@ -212,13 +214,13 @@ Os dados utilizados foram obtidos junto ao Ministério da Educação:
 
 -   Relatórios sobre a [**quantidade de vagas ofertadas para cada curso participante do SISU**]{.blue}.
 
-[**RESTRIÇÕES**]{.blue}
+[**RESTRIÇÕES:**]{.blue}
 
-1.  Período amostral limitado entre os anos de 2009 e 2022;
+1.  Período amostral limitado [**entre os anos de 2009 e 2022**]{.blue};
 
-2.  Mantidas as instituições públicas federais e estaduais;
+2.  Apenas as [**instituições públicas federais e estaduais**]{.blue};
 
-3.  Mantidos apenas os cursos de graduação presenciais;
+3.  Apenas os [**cursos de graduação presenciais**]{.blue};
 
 4.  Desprezados os cursos que apareciam em apenas um ano, além daqueles que só possuíam ingressos através do SISU.
 
@@ -279,11 +281,13 @@ $$ {#eq-dd}
 
 - $Y_{cte}$ é a variável dependente, que representa o perfil dos alunos ingressantes no curso $c$ do ano $t$ no estado $e$;
 
-- $SISU_{ct}$ é uma variável *dummy* que indica se o curso $c$ aderiu ao SISU no ano $t$; $SISU = 1$ se o curso aderiu ao SISU e $SISU = 0$ caso contrário;
+- $SISU_{ct}$ é uma variável *dummy* que indica se o curso $c$ aderiu ao SISU no ano $t$:
+  
+  -   $SISU_{ct} = 1$ se o curso aderiu ao SISU; $SISU_{ct} = 0$ caso contrário;
 
-- o coeficiente $\beta$ representa o efeito causal da introdução do SISU sobre o perfil dos alunos ingressantes;
+- o coeficiente de interesse $\beta$ representa o efeito causal médio da adoção do SISU sobre o perfil dos alunos ingressantes;
 
-- $\alpha_{c}$, $\alpha_{t}$ e $\alpha_{e}$ são os efeitos fixos de curso, de ano e de estado, respectivamente;
+- $\alpha_{c}$, $\alpha_{t}$ e $\alpha_{e}$ são, respectivamente, os efeitos fixos de curso, de ano e de estado;
 
 - $\epsilon_{cte}$ é o termo de erro.
 
@@ -302,11 +306,13 @@ $$ {#eq-event-study}
 
 - $1(t_{c} = t^{*} + k)$ são *dummies* que indicam o evento no ano $k$ relativo ao ano $t^{*}$ quando o curso $c$ adotou o ingresso pelo SISU;
 
-- $SISU_{ct}$ é uma variável *dummy* que indica se o curso $c$ aderiu ao SISU no ano $t$; $SISU = 1$ se o curso aderiu ao SISU e $SISU = 0$ caso contrário;
+- $SISU_{ct}$ é uma variável *dummy* que indica se o curso $c$ aderiu ao SISU no ano $t$:
 
-- o coeficiente $\beta_{k}$ captura os efeitos dinâmicos da adoção do SISU relativos ao ano anterior ao evento;
+  -   $SISU_{ct} = 1$ se o curso aderiu ao SISU; $SISU_{ct} = 0$ caso contrário;
 
-- $\alpha_{c}$, $\alpha_{t}$ e $\alpha_{e}$ são os efeitos fixos de curso, de ano e de estado, respectivamente;
+- o coeficiente de interesse $\beta_{k}$ captura os efeitos dinâmicos da adoção do SISU relativos ao ano anterior ao evento;
+
+- $\alpha_{c}$, $\alpha_{t}$ e $\alpha_{e}$, respectivamente, são os efeitos fixos de curso, de ano e de estado;
 
 - $\epsilon_{cte}$ é o termo de erro.
 
@@ -327,8 +333,6 @@ knitr::include_graphics(
 
 Para ter maiores informações sobre a [dinâmica das mudanças na composição dos alunos ao longo do tempo]{.blue}, será realizado um estudo de eventos a partir da Equação (2).
 
-<br>
-
 ```{r}
 #| fig-align: 'center'
 #| fig-dpi: 1200
@@ -341,7 +345,7 @@ knitr::include_graphics(
 
 ## Heterogeneidade
 
-Os impactos agregados podem mascarar uma heterogeneidade importante, e os impactos heterogêneos podem ajudar na compreensão das potenciais implicações da centralização sobre as caracterísicas dos estudantes ingressantes.
+Os [**impactos agregados podem mascarar uma heterogeneidade**]{.blue} importante, e os [**impactos heterogêneos**]{.blue} podem ajudar na [**compreensão das potenciais implicações da centralização sobre as caracterísicas dos estudantes ingressantes**]{.blue}.
 
 ```{r}
 #| fig-align: 'center'
@@ -353,6 +357,9 @@ knitr::include_graphics(
 ```
 
 ---
+
+<br>
+<br>
 
 ```{r}
 #| fig-align: 'center'
@@ -376,6 +383,8 @@ knitr::include_graphics(
 
 
 ## Teste de Robustez
+
+
 
 ```{r}
 #| fig-align: 'center'
@@ -408,12 +417,23 @@ knitr::include_graphics(
 )
 ```
 
+---
+
+```{r}
+#| fig-align: 'center'
+#| fig-dpi: 1200
+
+knitr::include_graphics(
+  here::here("docs", "img", "15-tab-teste-robustez-4.png")
+)
+```
+
 
 ## Conclusões
 
-A adoção do SISU é considerada uma política educacional importante, uma vez que busca proporcionar um acesso mais democratizado aos candidatos a uma vaga no ensino superior público brasileiro;
+A adoção do [**SISU**]{.blue} é considerada uma [**política educacional importante**]{.blue}, uma vez que busca proporcionar um [**acesso mais democratizado aos candidatos a uma vaga no ensino superior público brasileiro**]{.blue}.
 
-Os resultados encontrados indicam que a implementação do SISU promoveu alterações nas características de perfil dos alunos ingressantes nas instituições públicas gratuitas de ensino superior no Brasil. Houve:
+Os resultados encontrados indicam que [**a implementação do SISU promoveu alterações nas características de perfil dos alunos ingressantes nas instituições públicas gratuitas de ensino superior no Brasil**]{.blue}. Houve:
 
 :::: {.columns}
 
@@ -440,6 +460,8 @@ Os resultados encontrados indicam que a implementação do SISU promoveu altera�
 :::
 
 ::::
+
+Há a necessidade de mais estudos para avaliar o impacto de longo prazo do SISU sobre o perfil dos estudantes e das instituições, visando discutir e decidir sobre a continuidade, aperfeiçoamento ou extinção do programa.
 
 ---
 
